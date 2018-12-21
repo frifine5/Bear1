@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv_user_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="80dp"
+        android:paddingBottom="30dp"
+        android:gravity="center"
+        android:text="@string/tlt_login"
+        android:textColor="#201c1c"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/t_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lb_username"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/e_user_name"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_user_name"
+            android:lines="1"
+            android:singleLine="true"
+            android:inputType="text"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/t_user_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lb_loginpwd"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/e_user_password"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_user_password"
+            android:password="true"
+            android:singleLine="true"
+            android:maxLength="16"
+            android:maxLines="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/b_btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0afffdfd"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="@string/btn_login"
+            android:onClick="onMyLoginClick"
+            android:textColor="#ff0000" />
+
+        <Button
+            android:id="@+id/b_btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0afffdfd"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="@string/btn_cancel"
+            android:textColor="#ff0000" />
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
