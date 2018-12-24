@@ -15,7 +15,8 @@
     <string name="btn_login">登录</string>
     <string name="btn_cancel">取消</string>
 
-
-
+    // color self-define
+    <color name="checked">#05a</color>
+    <color name="nochecked">#aaa</color>
 
 </resources>

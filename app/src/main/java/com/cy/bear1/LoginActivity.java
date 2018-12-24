@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(LoginActivity.this, RoomActivity.class);
                 startActivity(intent);
-                finish();
+//                finish();
             } else {
                 Toast.makeText(this, "用户和密码输入错误", Toast.LENGTH_SHORT).show();
             }

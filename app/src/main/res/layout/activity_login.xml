@@ -39,6 +39,7 @@
             android:lines="1"
             android:singleLine="true"
             android:inputType="text"
+            android:text="admin"
             />
     </LinearLayout>
 
@@ -61,6 +62,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:hint="@string/input_user_password"
+            android:text="abc123"
             android:password="true"
             android:singleLine="true"
             android:maxLength="16"
