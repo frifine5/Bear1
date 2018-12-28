@@ -31,6 +31,15 @@ public class RoomActivity extends AppCompatActivity{
 
     }
 
+    /**
+     * 跳转到发送消息页
+     * @param v
+     */
+    public void g2MsgSender(View v){
+        Intent intent = new Intent(RoomActivity.this, Send1Activity.class);
+        startActivity(intent);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

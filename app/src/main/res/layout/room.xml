@@ -45,6 +45,13 @@
             android:text="软算法" />
 
         <RadioButton
+            android:id="@+id/rbtn_send"
+            android:checked="true"
+            style="@style/RadioButton"
+            android:onClick="g2MsgSender"
+            android:text="发送消息" />
+
+        <RadioButton
             android:id="@+id/rbtn_vest"
             style="@style/RadioButton"
             android:text="其它" />

@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".Send1Activity"
+
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:height="24dp"
+        android:text="请输入要发送的消息"
+        android:textSize="20dp"
+        android:layout_marginTop="16dp"
+        android:lineSpacingExtra="2dp"
+        android:gravity="start"
+        />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="22dp"
+        android:id="@+id/ctx"
+        />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_send"
+            android:onClick="send"
+            android:text="发送"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_clean"
+            android:onClick="cleanData"
+            android:text="清除"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="24dp"
+        android:textSize="20dp"
+        android:id="@+id/result"
+        android:textIsSelectable="true"
+        android:gravity="start"
+        />
+
+</LinearLayout> 
