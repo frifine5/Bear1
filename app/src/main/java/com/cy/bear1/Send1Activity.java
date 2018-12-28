@@ -12,15 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
+import com.cy.common.http.HttpUtils;
+
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,24 +91,9 @@ public class Send1Activity extends AppCompatActivity {
             List<NameValuePair> reqList = new ArrayList<>();
             reqList.add(new BasicNameValuePair("msg", msg));
             String url = "http://192.168.7.145:11111/app/rev";
-            HttpClient client = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost(url);
-            UrlEncodedFormEntity uefEntity;
             String result = "";
-            try {
-                uefEntity = new UrlEncodedFormEntity(reqList, "UTF-8");
-                httppost.setEntity(uefEntity);
-                System.out.println("executing request " + httppost.getURI());
-                HttpResponse response = client.execute(httppost);
-                if (response.getStatusLine().getStatusCode() == 200) {
-                    HttpEntity entity = httppost.getEntity();
-                    result = EntityUtils.toString(entity, "UTF-8");
-                } else {
-                    Log.i("bus", "返回结果为空");
-                }
-            } catch (Exception e) {
-                Log.e("bus", "http请求失败", e);
-            }
+
+            result = HttpUtils.httpSendAndReceive(reqList, url);
             return result;
         }
 
