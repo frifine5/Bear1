@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.cy.common.bus.L;
 import com.cy.common.http.HttpUtils;
 
 import org.apache.http.NameValuePair;
@@ -57,11 +58,11 @@ public class Send1Activity extends AppCompatActivity {
      * 发送消息
      */
     public void send(View v) {
-        Log.i("bus", ">>>>发送消息");
+        Log.i(L.BUS, ">>>>发送消息");
         String setCtx = etCtx.getText().toString();
         String url = etUrl.getText().toString();
         result.setText("");// 清空历史显示数据
-        Log.i("bus", String.format(">>>>准备发送的数据是:\t%s", setCtx));
+        Log.i(L.BUS, String.format(">>>>准备发送的数据是:\t%s", setCtx));
 
         DemoHttpAsynTask task = new DemoHttpAsynTask();
         task.execute(url, setCtx);
@@ -91,7 +92,7 @@ public class Send1Activity extends AppCompatActivity {
         protected String doInBackground(String[] params) {
             String url = params[0];
             String msg =  params[1];
-            Log.i("bus", String.format(">>>>in asynTask-msg:\t%s", msg));
+            Log.i(L.BUS, String.format(">>>>in asynTask-msg:\t%s", msg));
             List<NameValuePair> reqList = new ArrayList<>();
             reqList.add(new BasicNameValuePair("msg", msg));
 //            String url = "http://192.168.7.145:11111/app/rev";
@@ -102,7 +103,7 @@ public class Send1Activity extends AppCompatActivity {
         }
 
         protected void onPostExecute(String msg) {
-            Log.i("bus", "in onPostExecute 返回结果:"+msg);
+            Log.i(L.BUS, "in onPostExecute 返回结果:"+msg);
             result.setText(msg);
         }
     }

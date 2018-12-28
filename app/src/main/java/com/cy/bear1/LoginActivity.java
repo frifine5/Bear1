@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.cy.bear1.dbm.DBOpenHelper;
 import com.cy.bear1.dbm.PChkUtil;
+import com.cy.common.bus.L;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "登录名和密码不能为空", Toast.LENGTH_SHORT).show();
 
         }else {
-            Log.i("bus", String.format(">>>> name=%s, pwd=%s", name, pwd));
+            Log.i(L.BUS, String.format(">>>> name=%s, pwd=%s", name, pwd));
             // call db to find data on condition
             DBOpenHelper helper = new DBOpenHelper(this, "lg.db", null, 1);
             SQLiteDatabase db = helper.getWritableDatabase();
@@ -61,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                 String[] cols = c.getColumnNames();
                 while (c.moveToNext()) {
                     for (String cluName : cols) {
-                        Log.i("bus", String.format(">>>> cluName=%s, value=%s", cluName, c.getString(c.getColumnIndex(cluName))));
+                        Log.i(L.BUS, String.format(">>>> cluName=%s, value=%s", cluName, c.getString(c.getColumnIndex(cluName))));
                     }
                 }
                 c.close();

@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.cy.common.bus.L;
+
 /**
  * sqlite数据库建库建表类 in version
  */
@@ -30,7 +32,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         cv.put("name", "admin");
         cv.put("pwd", "abc123");
         Long ret = db.insert("lg_user_tb", null, cv);
-        Log.i("bus", String.format("==================>>>>>> 初始化lg_user_tb的记录id=%s", ret));
+        Log.i(L.BUS, String.format("==================>>>>>> 初始化lg_user_tb的记录id=%s", ret));
     }
 
     @Override

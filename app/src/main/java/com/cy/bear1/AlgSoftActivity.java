@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cy.bear1.dbm.PChkUtil;
+import com.cy.common.bus.L;
 import com.cy.common.bus.sm4.SM4Util;
 
 
@@ -49,11 +50,11 @@ public class AlgSoftActivity extends AppCompatActivity{
      * sm4加密
      */
     public void sm4Enc(View v){
-        Log.i("bus", ">>>>SM4加密");
+        Log.i(L.BUS, ">>>>SM4加密");
         String setCtx = etCtx.getText().toString();
         String setSM4Key = etSM4Key.getText().toString();
         result.setText("");// 清空历史显示数据
-        Log.i("bus", String.format(">>>>SM4入参:密钥= %s, 原文= %s",setSM4Key, setCtx));
+        Log.i(L.BUS, String.format(">>>>SM4入参:密钥= %s, 原文= %s",setSM4Key, setCtx));
         if(PChkUtil.checkNull(setCtx, setSM4Key)){
             Toast.makeText(this, "原文和密钥不能为空", Toast.LENGTH_SHORT).show();
         }else if(setSM4Key.length() !=32 || !PChkUtil.isHexString(setSM4Key)){
@@ -64,7 +65,7 @@ public class AlgSoftActivity extends AppCompatActivity{
             sm4.secretKey = setSM4Key;
             String retStr = sm4.encryptData_ECB(setCtx);
             result.setText(retStr);
-            Log.i("bus", ">>>>SM4加密结果=\t"+retStr);
+            Log.i(L.BUS, ">>>>SM4加密结果=\t"+retStr);
             Toast.makeText(this, "SM4加密完成", Toast.LENGTH_SHORT).show();
         }
     }
@@ -74,11 +75,11 @@ public class AlgSoftActivity extends AppCompatActivity{
      * sm4解密
      */
     public void sm4Dec(View v){
-        Log.i("bus", ">>>>SM4解密");
+        Log.i(L.BUS, ">>>>SM4解密");
         String setCtx = etCtx.getText().toString();
         String setSM4Key = etSM4Key.getText().toString();
         result.setText("");// 清空历史显示数据
-        Log.i("bus", String.format(">>>>SM4入参:密钥= %s, 密文= %s",setSM4Key, setCtx));
+        Log.i(L.BUS, String.format(">>>>SM4入参:密钥= %s, 密文= %s",setSM4Key, setCtx));
         if(PChkUtil.checkNull(setCtx, setSM4Key)){
             Toast.makeText(this, "密文和密钥不能为空", Toast.LENGTH_SHORT).show();
         }else if(setSM4Key.length() !=32 || !PChkUtil.isHexString(setSM4Key)) {
@@ -91,7 +92,7 @@ public class AlgSoftActivity extends AppCompatActivity{
             sm4.secretKey = setSM4Key;
             String retStr = sm4.decryptData_ECB(setCtx);
             result.setText(retStr);
-            Log.i("bus", ">>>>SM4解密结果=\t"+retStr);
+            Log.i(L.BUS, ">>>>SM4解密结果=\t"+retStr);
             Toast.makeText(this, "SM4解密完成", Toast.LENGTH_SHORT).show();
         }
     }
@@ -99,7 +100,7 @@ public class AlgSoftActivity extends AppCompatActivity{
 
     public void dotest(){
 
-        Log.i("bus", ">>>>测试sm4");
+        Log.i(L.BUS, ">>>>测试sm4");
 
         String ctx = "我是明文12345678";
         String key = "1234567812345678";
@@ -108,10 +109,10 @@ public class AlgSoftActivity extends AppCompatActivity{
         sm4.hexString = false;
 
         String rt = sm4.encryptData_ECB(ctx);
-        Log.i("bus", ">>>>原文ctx:\t"+ctx);
-        Log.i("bus", ">>>>SM4(ECB)加密结果:\t"+rt);
+        Log.i(L.BUS, ">>>>原文ctx:\t"+ctx);
+        Log.i(L.BUS, ">>>>SM4(ECB)加密结果:\t"+rt);
         String ctx2 = sm4.decryptData_ECB(rt);
-        Log.i("bus", ">>>>SM4(ECB)解密结果:\t"+ctx2);
+        Log.i(L.BUS, ">>>>SM4(ECB)解密结果:\t"+ctx2);
 
     }
 
