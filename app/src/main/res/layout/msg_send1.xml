@@ -11,6 +11,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:height="24dp"
+        android:text="请输入访问地址"
+        android:textSize="20dp"
+        android:layout_marginTop="16dp"
+        android:lineSpacingExtra="2dp"
+        android:gravity="start"
+        />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="22dp"
+        android:id="@+id/url"
+        android:text="http://192.168.7.36:11111/app/rev"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:height="24dp"
         android:text="请输入要发送的消息"
         android:textSize="20dp"
         android:layout_marginTop="16dp"
@@ -23,7 +41,6 @@
         android:minHeight="22dp"
         android:id="@+id/ctx"
         />
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

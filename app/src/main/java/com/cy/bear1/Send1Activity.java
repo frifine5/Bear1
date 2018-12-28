@@ -26,6 +26,7 @@ public class Send1Activity extends AppCompatActivity {
     private Button btn_send;// 解密按钮
     private Button btnCln;// 清除按钮
     private EditText etCtx;// 原文（in）
+    private EditText etUrl;// 网址（in）
     private TextView result;// 计算结果（out）
 
     Handler h = null;
@@ -37,6 +38,7 @@ public class Send1Activity extends AppCompatActivity {
 
         // 获得指定参数或对象
         etCtx = (EditText) findViewById(R.id.ctx);
+        etUrl = (EditText)findViewById(R.id.url);
         btn_send = (Button) findViewById(R.id.btn_send);
         btnCln = (Button) findViewById(R.id.btn_clean);
         result = (TextView) findViewById(R.id.result);
@@ -57,11 +59,12 @@ public class Send1Activity extends AppCompatActivity {
     public void send(View v) {
         Log.i("bus", ">>>>发送消息");
         String setCtx = etCtx.getText().toString();
+        String url = etUrl.getText().toString();
         result.setText("");// 清空历史显示数据
         Log.i("bus", String.format(">>>>准备发送的数据是:\t%s", setCtx));
 
         DemoHttpAsynTask task = new DemoHttpAsynTask();
-        task.execute(setCtx);
+        task.execute(url, setCtx);
 
     }
 
@@ -86,11 +89,12 @@ public class Send1Activity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String[] params) {
-            String msg =  params[0];
+            String url = params[0];
+            String msg =  params[1];
             Log.i("bus", String.format(">>>>in asynTask-msg:\t%s", msg));
             List<NameValuePair> reqList = new ArrayList<>();
             reqList.add(new BasicNameValuePair("msg", msg));
-            String url = "http://192.168.7.145:11111/app/rev";
+//            String url = "http://192.168.7.145:11111/app/rev";
             String result = "";
 
             result = HttpUtils.httpSendAndReceive(reqList, url);
