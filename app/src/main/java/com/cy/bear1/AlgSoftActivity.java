@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.cy.bear1.dbm.PChkUtil;
 import com.cy.common.bus.L;
+import com.cy.common.bus.sm3.SM3Util;
 import com.cy.common.bus.sm4.SM4Util;
 import com.hoofoo.android.client.SoftAlgJni;
 
@@ -131,9 +132,18 @@ public class AlgSoftActivity extends AppCompatActivity{
         outPutLen[0] = 0;
         int ret = softAlgJni.hf_a_sm3(input, input.length, null, outPutLen);
         byte[] outPut = new byte[outPutLen[0]];
+        long st1 = System.nanoTime();
         ret = softAlgJni.hf_a_sm3(input, input.length, outPut, outPutLen);
         Log.i(L.BUS, "ret="+Integer.toHexString(ret));
-        Log.i(L.BUS, "摘要结果:\t"+ Hex.toHexString(outPut));
+        Log.i(L.BUS, "摘要结果1:\t" + Hex.toHexString(outPut));
+        long et1 = System.nanoTime();
+        long st2 = System.nanoTime();
+        byte[] md = SM3Util.sm3Digest(input);
+        Log.i(L.BUS, "摘要2用软摘"+Integer.toHexString(ret));
+        Log.i(L.BUS, "摘要结果2:\t" + Hex.toHexString(md));
+        long et2 = System.nanoTime();
+        Log.i(L.BUS, "t1="+(et1-st1));
+        Log.i(L.BUS, "t2="+(et2-st2));
 
 
     }
