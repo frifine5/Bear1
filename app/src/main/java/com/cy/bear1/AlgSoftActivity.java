@@ -14,6 +14,9 @@ import android.widget.Toast;
 import com.cy.bear1.dbm.PChkUtil;
 import com.cy.common.bus.L;
 import com.cy.common.bus.sm4.SM4Util;
+import com.hoofoo.android.client.SoftAlgJni;
+
+import org.bouncycastle.util.encoders.Hex;
 
 
 public class AlgSoftActivity extends AppCompatActivity{
@@ -44,6 +47,7 @@ public class AlgSoftActivity extends AppCompatActivity{
     public void cleanData(View v){
         etCtx.setText("");
         result.setText("");
+        dotest2();
     }
 
     /**
@@ -54,7 +58,7 @@ public class AlgSoftActivity extends AppCompatActivity{
         String setCtx = etCtx.getText().toString();
         String setSM4Key = etSM4Key.getText().toString();
         result.setText("");// 清空历史显示数据
-        Log.i(L.BUS, String.format(">>>>SM4入参:密钥= %s, 原文= %s",setSM4Key, setCtx));
+        Log.i(L.BUS, String.format(">>>>SM4入参:密钥= %s, 原文= %s", setSM4Key, setCtx));
         if(PChkUtil.checkNull(setCtx, setSM4Key)){
             Toast.makeText(this, "原文和密钥不能为空", Toast.LENGTH_SHORT).show();
         }else if(setSM4Key.length() !=32 || !PChkUtil.isHexString(setSM4Key)){
@@ -98,7 +102,7 @@ public class AlgSoftActivity extends AppCompatActivity{
     }
 
 
-    public void dotest(){
+    public void dotest1(){
 
         Log.i(L.BUS, ">>>>测试sm4");
 
@@ -110,9 +114,27 @@ public class AlgSoftActivity extends AppCompatActivity{
 
         String rt = sm4.encryptData_ECB(ctx);
         Log.i(L.BUS, ">>>>原文ctx:\t"+ctx);
-        Log.i(L.BUS, ">>>>SM4(ECB)加密结果:\t"+rt);
+        Log.i(L.BUS, ">>>>SM4(ECB)加密结果:\t" + rt);
         String ctx2 = sm4.decryptData_ECB(rt);
         Log.i(L.BUS, ">>>>SM4(ECB)解密结果:\t"+ctx2);
+
+    }
+
+    public void dotest2(){
+
+        Log.i(L.BUS, ">>>>测试SoftAlgJni的使用-sm3");
+        String ctx = "我是明文12345678";
+        byte[] input = ctx.getBytes();
+
+        SoftAlgJni softAlgJni = SoftAlgJni.getInstance();
+        int[] outPutLen = new int[1];
+        outPutLen[0] = 0;
+        int ret = softAlgJni.hf_a_sm3(input, input.length, null, outPutLen);
+        byte[] outPut = new byte[outPutLen[0]];
+        ret = softAlgJni.hf_a_sm3(input, input.length, outPut, outPutLen);
+        Log.i(L.BUS, "ret="+Integer.toHexString(ret));
+        Log.i(L.BUS, "摘要结果:\t"+ Hex.toHexString(outPut));
+
 
     }
 

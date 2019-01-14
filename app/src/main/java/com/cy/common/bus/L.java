@@ -1,8 +1,8 @@
 package com.cy.common.bus;
 
 /**
- * 标记常量
- * 比如用在Log中的标记
+ * 鏍囪甯搁噺
+ * 姣斿鐢ㄥ湪Log涓殑鏍囪
  */
 public class L {
     public final static String BUS = "business";
