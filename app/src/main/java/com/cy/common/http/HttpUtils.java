@@ -3,6 +3,8 @@ package com.cy.common.http;
 
 import android.util.Log;
 
+import com.cy.common.bus.L;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -10,6 +12,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.HttpHostConnectException;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
@@ -44,14 +47,16 @@ public class HttpUtils {
                 Log.i("bus", "Response content: " + rtn);
             }
             return rtn;
+        }catch (HttpHostConnectException e1){
+            Log.e(L.BUS, "连接超时", e1);
         } catch (JSONException e) {
-            Log.e("bus", "JSON转换异常:返回结果不是JSON格式", e);
+            Log.e(L.BUS, "JSON转换异常:返回结果不是JSON格式", e);
         } catch (ClientProtocolException e) {
-            Log.e("bus", "httpclient 请求异常：客户端协议", e);
+            Log.e(L.BUS, "httpclient 请求异常：客户端协议", e);
         } catch (UnsupportedEncodingException e) {
-            Log.e("bus", "httpclient 请求异常：字符集编码", e);
+            Log.e(L.BUS, "httpclient 请求异常：字符集编码", e);
         } catch (IOException e) {
-            Log.e("bus", "httpclient 请求异常：I/O异常", e);
+            Log.e(L.BUS, "httpclient 请求异常：I/O异常", e);
         }
         return null;
     }

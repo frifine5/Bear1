@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.cy.common.bus.equip.EquipmentUtil;
+
 
 public class RoomActivity extends AppCompatActivity{
 
@@ -36,6 +38,7 @@ public class RoomActivity extends AppCompatActivity{
      * @param v
      */
     public void g2MsgSender(View v){
+        EquipmentUtil.getEquipmentInfo();
         Intent intent = new Intent(RoomActivity.this, Send1Activity.class);
         startActivity(intent);
     }
