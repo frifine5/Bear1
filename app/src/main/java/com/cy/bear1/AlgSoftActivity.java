@@ -2,6 +2,7 @@ package com.cy.bear1;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,6 +50,7 @@ public class AlgSoftActivity extends AppCompatActivity{
         etCtx.setText("");
         result.setText("");
         dotest2();
+        dotest3();
     }
 
     /**
@@ -145,6 +147,39 @@ public class AlgSoftActivity extends AppCompatActivity{
         Log.i(L.BUS, "t1="+(et1-st1));
         Log.i(L.BUS, "t2="+(et2-st2));
 
+
+    }
+
+    private byte[] getRnd(int len){
+
+        String str = "";
+        for (int i = 0; i < 32; i++) {
+            str += ((int)(Math.random()*10))+"";
+        }
+        return str.getBytes();
+    }
+
+    public void dotest3(){
+        SoftAlgJni softAlgJni = SoftAlgJni.getInstance();
+
+        softAlgJni.hf_a_bw_sm2_sys_init();
+
+        byte[] rnd = getRnd(32);
+        byte[] sk = new byte[64];
+        int[] skLen = {sk.length};
+        byte[] outData = new byte[65];
+        int[] outDataLen = {outData.length};
+        Log.i(L.BUS,  "函数调用前随机数="+ Base64.encodeToString(rnd, Base64.DEFAULT));
+
+        int ret = softAlgJni.hf_a_bw_sm2_tps_client_keygen(rnd, 32, sk, skLen, outData, outDataLen);
+
+        Log.i(L.BUS, "执行结果ret="+ret);
+        if(0 == ret){
+            Log.i(L.BUS,  "函数调用后随机数="+ Base64.encodeToString(rnd, Base64.DEFAULT));
+            Log.i(L.BUS,  "客户端私钥="+ Base64.encodeToString(sk, Base64.DEFAULT));
+            Log.i(L.BUS,  "输出中间数据="+ Base64.encodeToString(outData, Base64.DEFAULT));
+        }
+        softAlgJni.hf_a_bw_sm2_sys_clear();
 
     }
 
