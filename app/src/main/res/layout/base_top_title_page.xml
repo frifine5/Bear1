@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+
+
+    <!--包含标题栏:图标+文字-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="#d81e06"
+        android:orientation="horizontal"
+        android:layout_height="30dp">
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/iv_logo_page"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="25dp" />
+        <TextView
+            android:id="@+id/tv_title_page"
+            android:visibility="gone"
+            android:text="我是标题"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_height="25dp" />
+        <TextView
+            android:id="@+id/tv_paypal_page"
+            android:text="充值"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp" />
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/fl_title_content_page"
+        android:background="#AEAEAE"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:layout_weight="1">
+        <!--此入放置一个布局的原因:首页(Textview),赛程(内容),推荐... 使用方法addView(contentView)-->
+    </FrameLayout>
+
+</LinearLayout>
