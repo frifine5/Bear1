@@ -154,7 +154,7 @@ public class AlgSoftActivity extends AppCompatActivity{
 
         String str = "";
         for (int i = 0; i < 32; i++) {
-            str += ((int)(Math.random()*10))+"";
+            str += ((int)(Math.random()*9))+"";
         }
         return str.getBytes();
     }
